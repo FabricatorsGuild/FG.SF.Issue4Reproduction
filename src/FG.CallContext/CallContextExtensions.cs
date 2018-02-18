@@ -4,7 +4,7 @@
     {
         public static void FreeNamedDataSlot(this CallContext callContext, string key)
         {
-            callContext.RemoveKey(key);
+            callContext.RemoveItem(key);
         }
 
         public static void LogicalSetData(this CallContext callContext, string key, object value)

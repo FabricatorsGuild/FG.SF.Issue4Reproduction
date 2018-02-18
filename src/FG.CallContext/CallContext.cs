@@ -10,7 +10,7 @@ namespace FG.CallContext
 
         public static CallContext Current { get; } = new CallContext();
 
-        public CallContext RemoveKey(string key)
+        public CallContext RemoveItem(string key)
         {
             var dictionary = this._executionTreeStorage.Value;
 

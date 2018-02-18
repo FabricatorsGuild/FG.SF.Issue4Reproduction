@@ -1,4 +1,6 @@
-﻿namespace ActorService1
+﻿using System.Threading.Tasks;
+
+namespace ActorService1
 {
     using System;
     using System.Threading;
@@ -18,6 +20,7 @@
                 // The contents of your ServiceManifest.xml and ApplicationManifest.xml files
                 // are automatically populated when you build this project.
                 // For more information, see https://aka.ms/servicefabricactorsplatform
+
                 ActorRuntime.RegisterActorAsync<ActorService1>((context, actorType) => new ActorService(context, actorType)).GetAwaiter().GetResult();
 
                 Thread.Sleep(Timeout.Infinite);

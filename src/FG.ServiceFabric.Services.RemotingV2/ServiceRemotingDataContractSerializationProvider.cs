@@ -31,6 +31,8 @@ namespace FG.ServiceFabric.Services.RemotingV2
         {
         }
 
+        public static ServiceRemotingDataContractSerializationProvider Default { get; } = new ServiceRemotingDataContractSerializationProvider();
+
         /// <summary>
         ///     Creates a ServiceRemotingDataContractSerializationProvider with user specified IBufferPoolManager
         /// </summary>

@@ -1,4 +1,7 @@
-﻿namespace FG.ServiceFabric.Services.RemotingV2.FG
+﻿using Microsoft.ServiceFabric.Actors;
+using Microsoft.ServiceFabric.Actors.Client;
+
+namespace FG.ServiceFabric.Services.RemotingV2.FG
 {
     using System;
 
@@ -10,7 +13,11 @@
 
     public class ProxyFactory
     {
-        public static ServiceProxyFactory Default { get; } = new ServiceProxyFactory(
+        public static ServiceProxyFactory DefaultServiceProxyFactory { get; } = new ServiceProxyFactory(
+            c => new FabricTransportServiceRemotingClientFactory(serializationProvider: new ServiceRemotingDataContractSerializationProvider()));
+
+
+        public static ActorProxyFactory DefaultActorProxyFactory { get; } = new ActorProxyFactory(
             c => new FabricTransportServiceRemotingClientFactory(serializationProvider: new ServiceRemotingDataContractSerializationProvider()));
 
         public static TServiceInterface CreateServiceProxy<TServiceInterface>(
@@ -20,7 +27,25 @@
             string listenerName = null)
             where TServiceInterface : IService
         {
-            return Default.CreateServiceProxy<TServiceInterface>(serviceUri, partitionKey, targetReplicaSelector, listenerName);
+            return DefaultServiceProxyFactory.CreateServiceProxy<TServiceInterface>(serviceUri, partitionKey, targetReplicaSelector, listenerName);
+        }
+
+        public static TServiceInterface CreateActorServiceProxy<TServiceInterface>(
+            ActorId actorId,
+            Uri serviceUri,
+            string listenerName = null)
+            where TServiceInterface : IService
+        {
+            return DefaultActorProxyFactory.CreateActorServiceProxy<TServiceInterface>(serviceUri, actorId, listenerName);
+        }
+
+        public static TActorServiceInterface CreateActorProxy<TActorServiceInterface>(
+            ActorId actorId,
+            Uri serviceUri,
+            string listenerName = null)
+            where TActorServiceInterface : IService, IActor
+        {
+            return DefaultActorProxyFactory.CreateActorProxy<TActorServiceInterface>(serviceUri, actorId, listenerName);
         }
     }
 }

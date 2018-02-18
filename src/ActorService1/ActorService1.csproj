@@ -29,6 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <DebugType>pdbonly</DebugType>
@@ -78,6 +79,9 @@
       <HintPath>..\packages\Microsoft.ServiceFabric.Services.Remoting.3.0.456\lib\net45\Microsoft.ServiceFabric.Services.Remoting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Fabric, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
       <HintPath>..\packages\Microsoft.ServiceFabric.6.1.456\lib\net45\System.Fabric.dll</HintPath>
@@ -112,6 +116,14 @@
     <ProjectReference Include="..\ActorService1.Interfaces\ActorService1.Interfaces.csproj">
       <Project>{2361F67B-EE06-4ACF-9725-6F8EEFCC3181}</Project>
       <Name>ActorService1.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FG.CallContext\FG.CallContext.csproj">
+      <Project>{e378b9e6-3219-46d5-bc21-fd557db317b2}</Project>
+      <Name>FG.CallContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FG.ServiceFabric.Services.RemotingV2\FG.ServiceFabric.Services.RemotingV2.csproj">
+      <Project>{6b501a68-3bd2-44b0-b81c-7963f8decf97}</Project>
+      <Name>FG.ServiceFabric.Services.RemotingV2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
